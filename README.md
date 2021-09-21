@@ -161,7 +161,7 @@ kubectl replace -f lacework-cfg-k8s.yaml
 ### 7. Check that LW Agent is running on K8s
 You can check what is running on  the pod with:  
 ```bash
-
+kubectl get pods
 ```
   
 The response will be as follows:  
