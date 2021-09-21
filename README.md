@@ -144,7 +144,7 @@ Navigate to the "Cluster" page by clicking on "Cluster" in the left navigation b
 kubectl create -f lacework-cfg-k8s.yaml 
 ```   
   
-3. Instruct the Kubernetes orchestrator to deploy an agent on all nodes in the cluster, including the master.  
+3. Instruct the Kubernetes orchestrator to deploy an agent using a `DaemonSet` on all nodes in the cluster, including the master.  
   
 To change the CPU and memory limits, see Change Agent Resource Installation Limits on K8s Environments.  
   
