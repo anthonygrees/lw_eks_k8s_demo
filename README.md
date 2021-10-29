@@ -1,4 +1,6 @@
 # Lacework EKS K8s Terraform Demo
+
+[![CIS](https://app.soluble.cloud/api/v1/public/badges/bff9c38b-b828-453f-b328-042995862b40.svg)](https://app.soluble.cloud/repos/details/github.com/anthonygrees/lw_eks_k8s_demo)  [![HIPAA](https://app.soluble.cloud/api/v1/public/badges/78b5d2b0-2d85-4335-bd1e-9b8f83093b32.svg)](https://app.soluble.cloud/repos/details/github.com/anthonygrees/lw_eks_k8s_demo)  [![IaC](https://app.soluble.cloud/api/v1/public/badges/e9c36f1d-12ab-4e76-b117-d9dc3e100733.svg)](https://app.soluble.cloud/repos/details/github.com/anthonygrees/lw_eks_k8s_demo)  
 Provision an EKS Cluster using Terraform and add the Lacework Agent on Amazon Elastic Kubernetes Service
   
 The instructions in this repo will:
