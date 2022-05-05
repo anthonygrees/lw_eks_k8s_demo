@@ -196,3 +196,42 @@ kubectl config use-context <cluster::name>
 In the Lacework UI, you will now see your K8s cluster in the Polygraph.  
   
 ![polygraph](/images/polygraph.png)
+  
+  
+### 9. AWS EKS Audit Log Integration
+Lacework integrates with AWS to analyze EKS Audit Logs for monitoring EKS cluster security and configuration compliance.   
+  
+Audit logging must be enabled on the cluster(s) that you want to integrate. You can do this via the AWS CLI using the following command:
+```bash
+aws eks --region <region> update-cluster-config --name <cluster_name> \
+--logging '{"clusterLogging":[{"types":["audit"],"enabled":true}]}'
+```
+  
+  
+This scenario creates a new Lacework EKS Audit Log integration with a cross-account IAM role to provide Lacework access. This example targets cluster(s) in a single AWS region.  
+  
+Create a file called `main.tf` with the following:  
+```bash
+provider "lacework" {}
+
+module "aws_eks_audit_log" {
+  source             = "lacework/eks-audit-log/aws"
+  version            = "~> 0.2"
+  cloudwatch_regions = ["us-west-1"]
+  cluster_names      = ["example_cluster"]
+}
+```
+  
+Open a Terminal and change directories to the directory that contains the `main.tf` file and run terraform init to initialize the project and download the required modules.  
+   
+Run `terraform plan to validate` the configuration and review pending changes.  
+  
+After you review the pending changes, run `terraform apply` to execute changes.   
+  
+  
+To validate the integration using the CLI, open a Terminal and run the command:   
+```bash
+lacework integrations list
+```
+  
+The integration will be listed as `AWS_EKS_AUDIT`.  
