@@ -207,6 +207,12 @@ aws eks --region <region> update-cluster-config --name <cluster_name> \
 --logging '{"clusterLogging":[{"types":["audit"],"enabled":true}]}'
 ```
   
+or use the terraform output variables like this.  
+  
+```bash
+aws eks --region $(terraform output -raw region) update-cluster-config --name $(terraform output -raw cluster_name) \
+--logging '{"clusterLogging":[{"types":["audit"],"enabled":true}]}'
+```
   
 This scenario creates a new Lacework EKS Audit Log integration with a cross-account IAM role to provide Lacework access. This example targets cluster(s) in a single AWS region.  
   
