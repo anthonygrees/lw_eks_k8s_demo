@@ -214,6 +214,25 @@ aws eks --region $(terraform output -raw region) update-cluster-config --name $(
 --logging '{"clusterLogging":[{"types":["audit"],"enabled":true}]}'
 ```
   
+The response will be as follows:  
+```json
+{
+    "update": {
+        "id": "ca1fa657-2a7b-48b5-8bbc-xxxxxxxxxx",
+        "status": "InProgress",
+        "type": "LoggingUpdate",
+        "params": [
+            {
+                "type": "ClusterLogging",
+                "value": "{\"clusterLogging\":[{\"types\":[\"audit\"],\"enabled\":true}]}"
+            }
+        ],
+        "createdAt": "2022-05-06T19:53:11.939000+10:00",
+        "errors": []
+    }
+}
+```
+  
 This scenario creates a new Lacework EKS Audit Log integration with a cross-account IAM role to provide Lacework access. This example targets cluster(s) in a single AWS region.  
   
 Create a file called `main.tf` with the following:  
