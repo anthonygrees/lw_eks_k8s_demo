@@ -237,13 +237,27 @@ This scenario creates a new Lacework EKS Audit Log integration with a cross-acco
   
 Create a file called `main.tf` with the following:  
 ```bash
+terraform {
+  required_providers {
+    lacework = {
+      source  = "lacework/lacework"
+    }
+  }
+}
+
+provider "aws" {
+  region                  = "ap-southeast-2"
+  profile                 = "default"
+  shared_credentials_file = "~/.aws/credentials"
+}
+
 provider "lacework" {}
 
-module "aws_eks_audit_log" {
-  source             = "lacework/eks-audit-log/aws"
-  version            = "~> 0.2"
-  cloudwatch_regions = ["us-west-1"]
-  cluster_names      = ["example_cluster"]
+module "eks-audit-log" {
+  source  = "lacework/eks-audit-log/aws"
+  version = "0.2.0"
+  cloudwatch_regions = ["your-region"]
+  cluster_names      = ["your-eks-name"]
 }
 ```
   
@@ -260,3 +274,5 @@ lacework integrations list
 ```
   
 The integration will be listed as `AWS_EKS_AUDIT`.  
+  
+![eks](/images/eks_config.png)
