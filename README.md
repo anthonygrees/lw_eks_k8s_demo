@@ -150,7 +150,7 @@ Navigate to the "Cluster" page by clicking on "Cluster" in the left navigation b
 kubectl create -f lacework-cfg-k8s.yaml 
 ```   
   
-The `lacework-cfg-k8s.yaml` needs to have the variables replaced:  
+  The `lacework-cfg-k8s.yaml` needs to have the variables replaced:  
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -160,8 +160,8 @@ data:
   config.json: |
     {"tokens":{"AccessToken":"add_your_token_here"}, "tags":{"KubernetesCluster":"reesy.eks.local"}, "serverurl":"https://api.lacework.net"}
 ```   
-US  Lacework Tenant serverurl - `https://api.lacework.net`   
-ANZ Lacework Tenant serverurl - `https://auprodn1.agent.lacework.net`  
+  US  Lacework Tenant serverurl - `https://api.lacework.net`   
+  ANZ Lacework Tenant serverurl - `https://auprodn1.agent.lacework.net`  
   
   
 3. Instruct the Kubernetes orchestrator to deploy an agent using a `DaemonSet` on all nodes in the cluster, including the master.  
