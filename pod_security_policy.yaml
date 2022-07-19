@@ -1,0 +1,60 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: lacework
+spec:
+  allowedHostPaths:
+    - pathPrefix: /var/lib/lacework/config
+    - pathPrefix: /var/run/docker.sock
+    - pathPrefix: /var/run/docker.pid
+    - pathPrefix: /
+      readOnly: true
+    - pathPrefix: /var/lib/kubelet/pod-resources
+      readOnly: true
+    - pathPrefix: /var/lib/kubelet/plugins/pd.csi.storage.gke.io/
+      readOnly: true
+    - pathPrefix: /lib/udev
+      readOnly: true
+    - pathPrefix: /etc/group
+      readOnly: true
+    - pathPrefix: /var/lib/lacework/collector
+    - pathPrefix: /dev
+    - pathPrefix: /var/lib/kubelet/plugins_registry/
+      readOnly: true
+    - pathPrefix: /etc/passwd
+      readOnly: true
+    - pathPrefix: /sys
+    - pathPrefix: /lib/modules
+      readOnly: true
+    - pathPrefix: /var/lib/kubelet/device-plugins
+      readOnly: true
+    - pathPrefix: /var/lib/kubelet
+      readOnly: true
+    - pathPrefix: /etc/udev
+      readOnly: true
+    - pathPrefix: /var/log
+    - pathPrefix: /run/xtables.lock
+      readOnly: true
+    - pathPrefix: /home/kubernetes/bin/nvidia
+      readOnly: true
+    - pathPrefix: /run/udev
+      readOnly: true
+  fsGroup:
+    rule: RunAsAny
+  hostNetwork: true
+  hostPID: true
+  hostPorts:
+    - max: 0
+      min: 0
+  privileged: true
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+    - hostPath
+    - configMap
+    - downwardAPI
+    - secret
