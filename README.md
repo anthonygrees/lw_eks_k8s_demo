@@ -162,7 +162,37 @@ data:
 ```   
   US  Lacework Tenant serverurl - `https://api.lacework.net`   
   ANZ Lacework Tenant serverurl - `https://auprodn1.agent.lacework.net`  
-  
+
+If you wish to use the Lacework Code Aware Agent and Syscall, then use this `lacework-cfg-k8s.yaml`.  
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: lacework-config
+data:
+ config.json: |
+  {
+   "tokens":{
+    "AccessToken":"<snip>"
+   },
+   "tags":{
+    "Env":"k8s"
+   },
+   "serverurl":"https://api.lacework.net",
+   "codeaware":{
+    "enable":"all"
+   }
+  }
+ syscall_config.yaml: |
+  etype.exec:
+   group-by:
+    - ts
+  etype.file:
+   send-if-matches:
+    anydir:
+     watchpath: /*
+     depth: 3
+```
   
 3. Instruct the Kubernetes orchestrator to deploy an agent using a `DaemonSet` on all nodes in the cluster, including the master.  
   
